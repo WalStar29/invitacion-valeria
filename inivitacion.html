@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Invitación</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(240deg, #ffd6e8 0%, #fbb1d4 35%, #f88fc0 65%, #f36aae 100%);
+      background-size: 400% 400%;
+      animation: fondoAnimado 5s ease infinite;
+      font-family: 'Montserrat', sans-serif;
+      color: #333;
+      overflow: hidden;
+    }
+
+    @keyframes fondoAnimado {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .contenedor1 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .invitacion {
+      text-align: center;
+      padding: 2rem 3rem;
+      border-radius: 16px;
+      width: 100%;
+    }
+
+    .invitacion h1 {
+      font-size: 9rem;
+      margin-bottom: 1rem;
+      font-family: 'Dancing Script', cursive;
+      background: linear-gradient(270deg, #fbbf24, #ffffff, #fbbf24);
+      background-size: 600% 600%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: moverGradiente 6s ease infinite;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    @keyframes moverGradiente {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .invitacion .celebracion {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #d1006f;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .invitacion .nota {
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: #000000;
+      line-height: 1.6;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .invitacion button {
+      margin-top: 1.5rem;
+      padding: 0.9rem 2.2rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, #ffe0ec, #fcb8d2);
+      color: #4a2c3a;
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      border-radius: 16px;
+      cursor: pointer;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      letter-spacing: 0.5px;
+    }
+
+    .invitacion button::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 200%;
+      height: 100%;
+      background: linear-gradient(120deg, rgba(255,255,255,0.4), rgba(255,255,255,0));
+      transform: skewX(-20deg);
+      animation: brilloBoton 2s infinite;
+    }
+
+    @keyframes brilloBoton {
+      0% { left: -100%; }
+      50% { left: 100%; }
+      100% { left: 100%; }
+    }
+
+    .invitacion button:hover {
+      transform: scale(1.07);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    /* 🎈 Burbujas flotantes */
+    .burbujas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .burbuja {
+      position: absolute;
+      bottom: -100px;
+      width: 20px;
+      height: 20px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      animation: subirBurbuja 12s linear infinite;
+    }
+
+    @keyframes subirBurbuja {
+      0% { transform: translateY(0) scale(1); opacity: 0.6; }
+      50% { opacity: 0.3; }
+      100% { transform: translateY(-120vh) scale(1.5); opacity: 0; }
+    }
+
+    .burbuja:nth-child(1) { left: 10%; animation-delay: 0s; }
+    .burbuja:nth-child(2) { left: 25%; animation-delay: 2s; width: 25px; height: 25px; }
+    .burbuja:nth-child(3) { left: 40%; animation-delay: 4s; width: 15px; height: 15px; }
+    .burbuja:nth-child(4) { left: 60%; animation-delay: 1s; width: 30px; height: 30px; }
+    .burbuja:nth-child(5) { left: 75%; animation-delay: 3s; width: 20px; height: 20px; }
+    .burbuja:nth-child(6) { left: 90%; animation-delay: 5s; width: 18px; height: 18px; }
+
+    /* ✨ Destellos de luz */
+    .destellos {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .destello {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+      border-radius: 50%;
+      animation: brillar 6s ease-in-out infinite;
+    }
+
+    @keyframes brillar {
+      0% { opacity: 0; transform: scale(0.5); }
+      50% { opacity: 1; transform: scale(1.2); }
+      100% { opacity: 0; transform: scale(0.5); }
+    }
+
+    /* ✨ 20 destellos con posiciones variadas */
+    .destello:nth-child(1) { top: 20%; left: 15%; animation-delay: 0s; }
+    .destello:nth-child(2) { top: 40%; left: 70%; animation-delay: 1.5s; }
+    .destello:nth-child(3) { top: 60%; left: 30%; animation-delay: 3s; }
+    .destello:nth-child(4) { top: 80%; left: 50%; animation-delay: 4.5s; }
+    .destello:nth-child(5) { top: 25%; left: 85%; animation-delay: 2s; }
+    .destello:nth-child(6) { top: 10%; left: 40%; animation-delay: 2.5s; }
+    .destello:nth-child(7) { top: 50%; left: 10%; animation-delay: 3.5s; }
+    .destello:nth-child(8) { top: 70%; left: 80%; animation-delay: 5s; }
+    .destello:nth-child(9) { top: 30%; left: 60%; animation-delay: 1s; }
+    .destello:nth-child(10) { top: 85%; left: 25%; animation-delay: 4s; }
+    .destello:nth-child(11) { top: 15%; left: 55%; animation-delay: 1.2s; }
+    .destello:nth-child(12) { top: 35%; left: 35%; animation-delay: 2.8s; }
+    .destello:nth-child(13) { top: 65%; left: 15%; animation-delay: 3.3s; }
+
+    .detalles {
+      background-image: url('plantilla.jpg'); /* reemplaza con tu imagen optimizada */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: rgba(0, 0, 0, 0.3); /* oscurece ligeramente para contraste */
+      padding: 2rem 3rem;
+      border-radius: 16px;
+      height: 100vh;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+  }
+
+  .detalles .descrpcion{
+      margin: 0.9rem 0;
+      padding: 25% 10% 25% 5%;
+      text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.7);
+      background-color:  rgb(0, 0, 0, 0.5);
+      border-radius: 10px;
+  }
+
+  .detalles .contador {
+    position: absolute;
+    right: 0;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 1rem;
+    z-index: 2;
+  }
+
+  @keyframes aparecerMagico {
+    0% {
+      opacity: 0;
+      transform: scale(0.9);
+      filter: blur(8px);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+      filter: blur(0);
+    }
+  }
+
+  .detalles.aparecer {
+    animation: aparecerMagico 1s ease-out forwards;
+  }
+
+  .invitacion {
+    transition: opacity 0.5s ease;
+  }
+
+  </style>
+</head>
+<body>
+  <div class="burbujas">
+    <div class="burbuja"></div>
+    <div class="burbuja"></div>
+    <div class="burbuja"></div>
+    <div class="burbuja"></div>
+    <div class="burbuja"></div>
+    <div class="burbuja"></div>
+  </div>
+
+  <div class="destellos">
+  <div class="destello"></div>
+  <div class="destello"></div>
+  <div class="destello"></div>
+  <div class="destello"></div>
+  <div class="destello"></div>
+  <div class="destello"></div>
+  <div class="destello"></div>
+  <div class="destello"></div>
+  <div class="destello"></div>
+  <div class="destello"></div>
+  <div class="destello"></div>
+  <div class="destello"></div>
+  <div class="destello"></div>
+  <div class="destello"></div>
+  <div class="destello"></div>
+  <div class="destello"></div>
+  <div class="destello"></div>
+  <div class="destello"></div>
+  <div class="destello"></div>
+  <div class="destello"></div>
+</div>
+
+  <div class="contenedor1">
+  <div class="invitacion" id="inicial">
+    <h1>18</h1>
+    <p class="celebracion">¡Una Celebración Especial!</p>
+    <p class="nota">Te invitamos a compartir con nosotros este momento tan especial.</p>
+    <button id="verBtn">Ver invitación</button>
+  </div>
+
+  <div class="detalles" id="detalles" style="display: none;">
+    <h2 style="font-family: 'Dancing Script', cursive; font-size: 2.5rem; color: #d1006f;">Evento De Valeria Menoni</h2>
+    <div class="descrpcion">
+      <p style="font-size: 1.2rem;">12 de Septiembre</p>
+      <p style="font-size: 1.2rem;">La Auyama Torre A-03</p>
+      <p style="font-size: 1.3rem; font-weight: 600; color: #d1006f; text-shadow: 0 0 8px rgba(255,255,255,0.6);">
+        ¡Prepárate para una noche mágica! ✨
+      </p>
+    </div>
+    <div class="contador">
+      <p id="contador" style="font-size: 1.1rem; font-weight: 600; color: #4a2c3a; background: rgba(255,255,255,0.9); padding: 0.5rem; border-radius: 12px; display: inline-block; box-shadow: 0 4px 10px rgba(0,0,0,0.2); text-align: center;">
+        Faltan <span id="tiempoRestante"></span>
+      </p>
+    </div>
+    <audio id="musica" src="musica.flac" preload="auto" autoplay loop></audio>
+</div>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const boton = document.getElementById('verBtn');
+    const inicial = document.getElementById('inicial');
+    const detalles = document.getElementById('detalles');
+    const musica = document.getElementById('musica');
+
+    // ⏱️ Esperar a que se cargue el audio para establecer el tiempo
+    musica.addEventListener('loadedmetadata', () => {
+      musica.currentTime = 118; // 1 minuto y 57 segundos
+    });
+
+    // 🔊 Intentar reproducir automáticamente al cargar
+    musica.volume = 0.5;
+    musica.play().catch(e => console.log('Autoplay bloqueado por el navegador:', e));
+
+    // 🎭 Transición mágica al hacer clic
+    boton.addEventListener('click', () => {
+      inicial.style.opacity = '0';
+      setTimeout(() => {
+        inicial.style.display = 'none';
+        detalles.style.display = 'block';
+        detalles.classList.add('aparecer');
+        musica.play().catch(e => console.log('Reproducción bloqueada:', e));
+      }, 500);
+    });
+
+    // ⏳ Contador dinámico
+    function actualizarContador() {
+      const ahora = new Date();
+      const evento = new Date('2025-09-12T20:00:00-04:00');
+      const diferencia = evento - ahora;
+
+      if (diferencia <= 0) {
+        document.getElementById('tiempoRestante').textContent = '¡Ya comenzó la celebración!';
+        return;
+      }
+
+      const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diferencia / (1000 * 60 * 60)) % 24);
+      const minutos = Math.floor((diferencia / (1000 * 60)) % 60);
+      const segundos = Math.floor((diferencia / 1000) % 60);
+
+      document.getElementById('tiempoRestante').textContent =
+        `${dias} Dias: ${horas} Hora: ${minutos} Min: ${segundos} Seg`;
+    }
+
+    setInterval(actualizarContador, 1000);
+    actualizarContador();
+  });
+</script>
+
+</body>
+</html>
